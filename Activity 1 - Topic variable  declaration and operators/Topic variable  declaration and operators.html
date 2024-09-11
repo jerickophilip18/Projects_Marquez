@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Average</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 60%;
+            max-width: 600px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 20px; /* Space below the table */
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #00796b;
+            color: white;
+            font-weight: bold;
+        }
+        td {
+            background-color: #f1f8e9;
+            height: 40px;
+        }
+        .average-row td, .remarks-row td {
+            background-color: #00796b;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-top: 2px solid #004d40;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Grade</th>
+        </tr>
+        <tr>
+            <td>APPDEV</td>
+            <td id="grade1">71</td>
+        </tr>
+        <tr>
+            <td>OPSYST</td>
+            <td id="grade2">73</td>
+        </tr>
+        <tr>
+            <td>PROGIT1</td>
+            <td id="grade3">74</td>
+        </tr>
+        <tr class="average-row">
+            <td>Average</td>
+            <td id="average"></td>
+        </tr>
+        <tr class="remarks-row">
+            <td>Remarks</td>
+            <td id="remarks"></td>
+        </tr>
+    </table>
+
+    <script>
+        var grade1 = parseInt(document.getElementById("grade1").innerHTML);
+        var grade2 = parseInt(document.getElementById("grade2").innerHTML);
+        var grade3 = parseInt(document.getElementById("grade3").innerHTML);
+        
+        var average = (grade1 + grade2 + grade3) / 3;
+        document.getElementById("average").innerHTML = average.toFixed(2);
+
+        var remarks;
+        if (average <= 74) {
+            remarks = "Poor";
+        } else if (average <= 80) {
+            remarks = "Fair";
+        } else if (average <= 89) {
+            remarks = "Good";
+        } else {
+            remarks = "Excellent";
+        }
+
+        document.getElementById("remarks").innerHTML = remarks;
+        alert("Your average is " + average.toFixed(2) + ". Remarks: " + remarks);
+    </script>
+</body>
+</html>

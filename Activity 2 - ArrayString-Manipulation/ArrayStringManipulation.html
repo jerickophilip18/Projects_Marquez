@@ -1,0 +1,49 @@
+ "jer "
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Manipulation</title>
+</head>
+<body>
+    <h1>Array Manipulation</h1>
+
+    <input type="number" id="numberInput" placeholder="Enter a number">
+    <button onclick="addToArray('number')">Add Number</button>
+
+    <input type="text" id="nameInput" placeholder="Enter a name">
+    <button onclick="addToArray('string')">Add Name</button>
+    <button onclick="convertToUpper()">Convert Name to Uppercase</button>
+
+    <button onclick="displayArray()">Display Array</button>
+    <p id="arrayOutput"></p>
+
+    <script>
+        const numbersArray = [];
+        const stringsArray = [];
+
+        const addToArray = type => {
+            const input = document.getElementById(type === 'number' ? 'numberInput' : 'nameInput');
+            const value = type === 'number' ? parseFloat(input.value) : input.value.trim();
+
+            if (type === 'number' ? !isNaN(value) : value) {
+                (type === 'number' ? numbersArray : stringsArray).push(value);
+                input.value = '';
+            } else {
+                alert(`Please enter a valid ${type}.`);
+            }
+        };
+
+        const convertToUpper = () => {
+            for (let i = 0; i < stringsArray.length; i++) {
+                stringsArray[i] = stringsArray[i].toUpperCase();
+            }
+            displayArray();
+        };
+ 
+        const displayArray = () => {
+            const numbersText = numbersArray.length ? `Numbers: [${numbersArray.join(', ')}]` : 'No numbers added.';
+            const stringsText = stringsArray.length ? `Names: [${stringsArray.join(', ')}]` : 'No names added.';
+            document.getElementById('arrayOutput').textContent = `${numbersText}\n${stringsText}`;
+        };
+    </script>
+</body>
+</html>
